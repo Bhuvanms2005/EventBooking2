@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8fafc;
+    overflow-x: hidden;
+}
+
+.navbar {
+    background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 100%);
+    padding: 15px 8%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 12px;
+}
+
+.nav-logo {
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: -0.5px;
+}
+
+.breadcrumb-bar {
+    margin-top: 60px;
+    padding: 15px 8%;
+    background: #ffffff;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #eff6ff 0%, #faf5ff 100%);
+    padding: 80px 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+}
+
+.shield-container {
+    margin-bottom: 15px;
+}
+
+.hero-content h1 {
+    color: #1e293b;
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.hero-content p {
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+.main-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1400px;
+    margin: -40px auto 60px auto;
+    padding: 0 8%;
+    position: relative;
+    z-index: 5;
+}
+
+.sidebar {
+    flex: 0 0 300px;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    height: fit-content;
+}
+
+.sidebar h3 {
+    margin-bottom: 25px;
+    color: #0f172a;
+    font-size: 1.2rem;
+}
+
+.filter-group {
+    margin-bottom: 30px;
+}
+
+.filter-group h4 {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: #475569;
+    cursor: pointer;
+}
+
+.date-picker {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    color: #475569;
+}
+
+.apply-btn {
+    width: 100%;
+    background: #ffbd2e;
+    border: none;
+    padding: 15px;
+    border-radius: 14px;
+    font-weight: 700;
+    color: #000;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.apply-btn:hover {
+    transform: translateY(-2px);
+}
+
+.login-card {
+    flex: 1;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.form-side {
+    flex: 1;
+}
+
+.form-side h2 {
+    font-size: 2rem;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.form-side p {
+    color: #64748b;
+    margin-bottom: 35px;
+}
+
+.status-message {
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.status-error {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fee2e2;
+}
+
+.status-success {
+    background: #f0fdf4;
+    color: #16a34a;
+    border: 1px solid #dcfce7;
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 16px 16px 16px 50px;
+    border: 1.5px solid #f1f5f9;
+    background: #f8fafc;
+    border-radius: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-wrapper input:focus {
+    border-color: #6366f1;
+}
+
+.input-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.forgot-link {
+    display: block;
+    text-align: right;
+    font-size: 0.85rem;
+    color: #6366f1;
+    text-decoration: none;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.login-btn {
+    width: 100%;
+    background: #ffbd2e;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255, 189, 46, 0.4);
+}
+
+.divider {
+    text-align: center;
+    margin: 30px 0;
+    position: relative;
+}
+
+.divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #e2e8f0;
+}
+
+.divider span {
+    position: relative;
+    background: white;
+    padding: 0 15px;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.google-btn {
+    width: 100%;
+    background: white;
+    border: 1.5px solid #e2e8f0;
+    padding: 14px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.illustration-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.illustration-side img {
+    max-width: 100%;
+    height: auto;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto 50px auto;
+    padding: 0 8%;
+}
+
+.feature-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #475569;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.footer {
+    text-align: center;
+    padding-bottom: 40px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 1200px) {
+    .login-card {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .illustration-side {
+        order: -1;
+    }
+}
+
+@media (max-width: 900px) {
+    .main-container {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    .sidebar {
+        flex: 1;
+    }
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
