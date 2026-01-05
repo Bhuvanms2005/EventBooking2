@@ -43,27 +43,37 @@ const ManageEventPage = () => {
         const formData = new FormData();
         
         Object.keys(event).forEach(key => {
-            if (key === 'price') {
-                formData.append(key, Math.round(Number(event[key])));
+            if (key === 'price' || key === 'capacity') {
+                formData.append(key, Math.round(Number(event[key] || 0)));
             } else {
                 formData.append(key, event[key] || '');
             }
         });
 
-        formData.append('availableTickets', event.capacity || 0);
+        formData.append('availableTickets', Math.round(Number(event.capacity || 0)));
         if (selectedFile) formData.append('image', selectedFile);
 
         try {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            };
+
             if (isNew) {
-                await axios.post(`${import.meta.env.VITE_API_URL}/events/create`, formData);
+                await axios.post(`${import.meta.env.VITE_API_URL}/events/create`, formData, config);
                 setStatusMsg({ type: 'success', text: 'Event Published!' });
             } else {
-                await axios.put(`${import.meta.env.VITE_API_URL}/events/${id}`, formData);
+                await axios.put(`${import.meta.env.VITE_API_URL}/events/${id}`, formData, config);
                 setStatusMsg({ type: 'success', text: 'Event Updated!' });
             }
             setTimeout(() => navigate('/admin/manage-events'), 1500);
         } catch (err) {
-            setStatusMsg({ type: 'error', text: 'Error: Check server logs.' });
+            setStatusMsg({ 
+                type: 'error', 
+                text: err.response?.data?.message || 'Error: Check server logs.' 
+            });
         }
     };
 
@@ -107,6 +117,9 @@ const ManageEventPage = () => {
                                     <option value="Concerts">Concerts</option>
                                     <option value="Festivals">Festivals</option>
                                     <option value="Tech">Tech</option>
+                                    <option value="Sports">Sports</option>
+                                    <option value="Workshops">Workshops</option>
+                                    <option value="Conferences">Conferences</option>
                                 </select>
                             </div>
                         </div>
@@ -150,8 +163,10 @@ const ManageEventPage = () => {
                                 <Upload size={24} />
                                 <p>{selectedFile ? selectedFile.name : "Choose file"}</p>
                                 <input id="fileInput" type="file" hidden onChange={(e) => {
-                                    setSelectedFile(e.target.files[0]);
-                                    setPreview(URL.createObjectURL(e.target.files[0]));
+                                    if(e.target.files[0]) {
+                                        setSelectedFile(e.target.files[0]);
+                                        setPreview(URL.createObjectURL(e.target.files[0]));
+                                    }
                                 }} />
                             </div>
                         </div>

@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const eventController = require('../controllers/eventController');
+const upload = require('../middleware/upload'); // Ensure this path is correct for your multer config
 
-router.post('/', eventController.createEvent);
+// Add upload.single('image') here
+router.post('/create', upload.single('image'), eventController.createEvent);
 router.get('/all', eventController.getAllEvents);
 router.get('/:id', eventController.getEventById);
-router.put('/:id', eventController.updateEvent);
+router.put('/:id', upload.single('image'), eventController.updateEvent);
 router.delete('/:id', eventController.deleteEvent);
 
 router.get('/public/all', eventController.getAllEvents);

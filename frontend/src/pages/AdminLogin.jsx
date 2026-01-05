@@ -63,7 +63,7 @@ const AdminLogin = () => {
 
                     <div className="filter-group">
                         <h4>Category</h4>
-                        {['All', 'Concerts', 'Conferences', 'Festivals'].map(cat => (
+                        {['All', 'Concerts', 'Conferences', 'Festivals','Workshops','Sports','Conference'].map(cat => (
                             <label key={cat} className="filter-option">
                                 <input type="checkbox" defaultChecked={cat === 'All'} /> {cat}
                             </label>
@@ -114,10 +114,6 @@ const AdminLogin = () => {
                             <a href="#" className="forgot-link">Forgot Password?</a>
                             <button type="submit" className="login-btn">LOGIN NOW</button>
                         </form>
-
-                        <div className="divider"><span>OR</span></div>
-                        
-                        
                     </div>
 
                     <div className="illustration-side">
