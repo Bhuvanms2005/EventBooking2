@@ -1,0 +1,94 @@
+.my-bookings-container { background: #f8fafc; min-height: 100vh; }
+
+.bookings-header {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: white;
+    padding: 120px 10% 80px;
+    text-align: center;
+}
+
+.bookings-header h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+.bookings-header .highlight { color: #ffbd2e; }
+
+.bookings-content { padding: 40px 10%; margin-top: -40px; }
+
+.bookings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.ticket-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+}
+
+.ticket-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+
+.ticket-img { height: 180px; position: relative; }
+.ticket-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.status-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-badge.confirmed { background: #dcfce7; color: #166534; }
+
+.ticket-info { padding: 25px; flex-grow: 1; }
+.category-label { color: #6366f1; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+.ticket-info h3 { font-size: 1.25rem; color: #1e293b; margin: 5px 0 15px; }
+
+.info-row { display: flex; align-items: center; gap: 10px; color: #64748b; font-size: 0.9rem; margin-bottom: 8px; }
+
+.ticket-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.seats-count strong, .price-paid strong { color: #1e293b; font-size: 1.1rem; }
+
+.ticket-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+
+.action-btn {
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.action-btn.download { background: #f1f5f9; color: #475569; border: none; }
+.action-btn.download:hover { background: #e2e8f0; }
+
+.action-btn.view { background: #6366f1; color: white; }
+.action-btn.view:hover { background: #4f46e5; }
+
+.empty-bookings { text-align: center; padding: 100px 0; background: white; border-radius: 30px; }
+.explore-btn { display: inline-block; margin-top: 20px; background: #ffbd2e; color: #0f172a; padding: 14px 30px; border-radius: 12px; text-decoration: none; font-weight: 700; }
+
+@media (max-width: 600px) {
+    .bookings-grid { grid-template-columns: 1fr; }
+    .ticket-actions { grid-template-columns: 1fr; }
+}

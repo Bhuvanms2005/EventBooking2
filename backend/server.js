@@ -5,7 +5,8 @@ const cors = require('cors');
 
 const adminRoutes = require('./routes/adminRoutes');
 const eventRoutes = require('./routes/eventRoutes');
-
+const authRoutes = require('./routes/authRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -16,8 +17,10 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.use('/api/admin', adminRoutes);
 app.use('/api/events', eventRoutes);
-
+app.use('/api/auth', authRoutes);
+app.use('/api/bookings', bookingRoutes);
 app.use((err, req, res, next) => {
+    console.error("SERVER ERROR:", err.stack);
     const status = err.status || 500;
     const message = err.message || "Internal Server Error";
     res.status(status).json({
