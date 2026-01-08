@@ -108,7 +108,12 @@ const ManageEvents = () => {
                                 <tr key={event._id}>
                                     <td>
                                         <div className="event-info-cell">
-                                            <img src={event.image} alt="" className="event-thumb" />
+                                            <img
+  src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${event.image}`}
+  alt={event.title}
+  className="event-thumb"
+/>
+
                                             <div>
                                                 <div className="event-name">{event.title}</div>
                                                 <div className="event-id">ID: {event._id.slice(-6)}</div>

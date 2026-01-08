@@ -1,14 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const { 
+    createEvent, 
+    getAllEvents, 
+    getEventById, 
+    updateEvent, 
+    deleteEvent 
+} = require('../controllers/eventController');
 const eventController = require('../controllers/eventController');
-const upload = require('../middleware/upload'); // Ensure this path is correct for your multer config
+const multer = require('multer');
+const path = require('path');
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => cb(null, 'uploads/'),
+    filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
+});
+const upload = multer({ storage });
 
-// Add upload.single('image') here
-router.post('/create', upload.single('image'), eventController.createEvent);
-router.get('/all', eventController.getAllEvents);
-router.get('/:id', eventController.getEventById);
-router.put('/:id', upload.single('image'), eventController.updateEvent);
-router.delete('/:id', eventController.deleteEvent);
+router.post('/create',upload.single('image'), createEvent);
+router.get('/all', getAllEvents);
+router.get('/:id', getEventById);
+router.put('/:id', updateEvent);
+router.delete('/:id', deleteEvent);
 
 router.get('/public/all', eventController.getAllEvents);
 router.get('/public/cities', eventController.getUniqueCities);
