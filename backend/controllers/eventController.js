@@ -1,7 +1,7 @@
 const Event = require('../models/Event');
 const mongoose = require('mongoose');
 
-exports.createEvent = async (req, res) => {
+/*exports.createEvent = async (req, res) => {
     try {
         const { title, description, date, startTime, endTime, location, category, price, capacity } = req.body;
 
@@ -31,7 +31,80 @@ exports.createEvent = async (req, res) => {
         console.error("Create Event Error:", err);
         res.status(500).json({ message: err.message });
     }
+};*/
+exports.createEvent = async (req, res) => {
+  try {
+    const {
+      title,
+      description,
+      date,
+      startTime,
+      endTime,
+      location,
+      category,
+      price,
+      capacity
+    } = req.body;
+
+    // 1. Required field validation
+    if (!title || !date || !location || !category) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required fields"
+      });
+    }
+
+    // 2. File validation
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "Please upload an event image."
+      });
+    }
+
+    // 3. Numeric validation
+    const parsedPrice = Number(price);
+    const parsedCapacity = Number(capacity);
+
+    if (isNaN(parsedPrice) || isNaN(parsedCapacity)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid price or capacity"
+      });
+    }
+
+    // 4. Create event
+    const newEvent = new Event({
+      title,
+      description,
+      date,
+      startTime,
+      endTime,
+      location,
+      category,
+      price: parsedPrice,
+      capacity: parsedCapacity,
+      availableTickets: parsedCapacity,
+      image: `/uploads/${req.file.filename}`
+    });
+
+    await newEvent.save();
+
+    return res.status(201).json({
+      success: true,
+      message: "Event created successfully",
+      event: newEvent
+    });
+
+  } catch (err) {
+    console.error("Create Event Error:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error"
+    });
+  }
 };
+
 
 exports.getAllEvents = async (req, res) => {
     try {
@@ -77,13 +150,14 @@ exports.getEventById = async (req, res) => {
 exports.updateEvent = async (req, res) => {
     try {
         const { id } = req.params;
+       
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ message: "Invalid ID format" });
         }
 
         // Create a copy of the body data
         const updatedData = { ...req.body };
-
+         delete updatedData.availableTickets;
         // 1. Fix Image Path: Store only the relative path (more flexible for deployment)
         if (req.file) {
             updatedData.image = `/uploads/${req.file.filename}`;

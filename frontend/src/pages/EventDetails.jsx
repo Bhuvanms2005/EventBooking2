@@ -76,7 +76,11 @@ const EventDetails = () => {
             <main className="details-layout">
                 <div className="details-left">
                     <div className="hero-card">
-                        <img src={event.image} alt={event.title} className="event-banner" />
+                        <img
+  src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${event.image}`}
+  alt={event.title}
+  className="event-banner"
+/>
                         <div className="hero-info">
                             <span className="category-tag">{event.category}</span>
                             <h1>{event.title}</h1>
@@ -149,7 +153,11 @@ const EventDetails = () => {
                     <div className="related-grid">
                         {related.map(rel => (
                             <div key={rel._id} className="related-card" onClick={() => navigate(`/event/${rel._id}`)}>
-                                <img src={rel.image} alt={rel.title} />
+                                <img
+  src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${rel.image}`}
+  alt={rel.title}
+  className="event-banner"
+/>
                                 <div className="rel-body">
                                     <h4>{rel.title}</h4>
                                     <p><MapPin size={14}/> {rel.location}</p>

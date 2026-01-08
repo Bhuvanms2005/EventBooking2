@@ -19,7 +19,7 @@ const upload = multer({ storage });
 router.post('/create',upload.single('image'), createEvent);
 router.get('/all', getAllEvents);
 router.get('/:id', getEventById);
-router.put('/:id', updateEvent);
+router.put('/:id',upload.single('image'), updateEvent);
 router.delete('/:id', deleteEvent);
 
 router.get('/public/all', eventController.getAllEvents);

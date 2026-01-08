@@ -131,7 +131,11 @@ const AuthPage = () => {
                     <div className="rec-grid">
                         {recommended.map(event => (
                             <div key={event._id} className="rec-card" onClick={() => navigate(`/event/${event._id}`)}>
-                                <img src={event.image} alt={event.title} />
+                                <img
+  src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${event.image}`}
+  alt={event.title}
+  className="event-thumb"
+/>
                                 <div className="rec-info">
                                     <h4>{event.title}</h4>
                                     <p><MapPin size={14}/> {event.location}</p>

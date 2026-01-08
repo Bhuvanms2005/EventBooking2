@@ -65,7 +65,11 @@ const MyBookings = () => {
                         {bookings.map((booking) => (
                             <div key={booking._id} className="ticket-card">
                                 <div className="ticket-img">
-                                    <img src={booking.event?.image} alt={booking.event?.title} />
+                                    <img
+  src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${booking.event?.image}`}
+  alt={booking.event?.title}
+  className="event-thumb"
+/>
                                     <div className={`status-badge ${booking.status.toLowerCase()}`}>
                                         {booking.status}
                                     </div>

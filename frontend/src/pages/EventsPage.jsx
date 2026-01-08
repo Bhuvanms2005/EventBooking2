@@ -152,7 +152,11 @@ const EventsPage = () => {
                                     events.map(event => (
                                         <div key={event._id} className="event-item-card">
                                             <div className="item-img">
-                                                <img src={event.image} alt={event.title} />
+                                                <img
+  src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${event.image}`}
+  alt={event.title}
+  className="event-thumb"
+/>
                                                 <div className="item-price">₹{event.price}</div>
                                             </div>
                                             <div className="item-details">

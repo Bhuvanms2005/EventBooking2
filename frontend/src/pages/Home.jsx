@@ -134,7 +134,11 @@ const Home = () => {
                     {filteredEvents.map(event => (
                         <div key={event._id} className="user-event-card">
                             <div className="card-img-wrapper">
-                                <img src={event.image} alt={event.title} />
+                                <img
+  src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${event.image}`}
+  alt={event.title}
+  className="event-thumb"
+/>
                                 <span className="card-cat">{event.category}</span>
                             </div>
                             <div className="card-body">
