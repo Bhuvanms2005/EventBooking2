@@ -1,7 +1,7 @@
 const Booking = require('../models/Booking');
 const Event = require('../models/Event');
 const User = require('../models/User');
-
+const {sendBookingEmail}=require('../utils/sendEmail');
 exports.createBooking = async (req, res) => {
     try {
         const { eventId, ticketCount, totalPrice } = req.body;
@@ -23,14 +23,26 @@ exports.createBooking = async (req, res) => {
 
         await newBooking.save();
 
-        // Atomic updates
         event.availableTickets -= ticketCount;
         await event.save();
 
-        await User.findByIdAndUpdate(userId, { $inc: { ticketCount: ticketCount } });
+        const user = await User.findByIdAndUpdate(userId, { $inc: { ticketCount: ticketCount } }, { new: true });
+
+        // WRAP THE EMAIL IN A TRY/CATCH
+        try {
+            await sendBookingEmail(user.email, {
+                eventTitle: event.title,
+                ticketCount: ticketCount,
+                totalPrice: totalPrice
+            });
+        } catch (mailError) {
+            console.error("Booking saved, but email failed:", mailError.message);
+            // We do NOT send a 500 error here, so the user sees "Booking Successful"
+        }
 
         res.status(201).json({ message: "Booking successful!", booking: newBooking });
     } catch (err) {
+        console.error("Booking Error:", err);
         res.status(500).json({ message: "Internal Server Error" });
     }
 };
@@ -39,6 +51,7 @@ exports.getMyBookings = async (req, res) => {
         const userId = req.user.id;
         const bookings = await Booking.find({ user: userId })
             .populate('event')
+            .populate('user', 'name')
             .sort({ createdAt: -1 });
 
         res.status(200).json(bookings);
