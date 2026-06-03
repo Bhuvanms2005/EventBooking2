@@ -16,6 +16,7 @@ import About from './pages/About';
 import Terms from './pages/Terms';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+
 function App() {
   return (
     <Router>
