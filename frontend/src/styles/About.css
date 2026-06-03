@@ -1,0 +1,109 @@
+/* About.css */
+
+/* Re-using shared nav styles to ensure consistency */
+.about-page-wrapper .user-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #1e293b;
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+.about-page-wrapper .nav-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Push content below fixed nav */
+.about-container {
+    padding-top: 80px; 
+    background: #ffffff;
+}
+
+.about-hero {
+    background: linear-gradient(135deg, #eff6ff 0%, #faf5ff 100%);
+    padding: 120px 10% 100px; /* Increased top padding for Hero */
+    text-align: center;
+}
+
+.about-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+.about-hero .highlight { color: #6366f1; }
+
+/* Stats grid - Mobile Responsive */
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 0 10%;
+    margin-top: -60px; /* Overlap effect */
+}
+
+.stat-card {
+    background: white;
+    padding: 40px 20px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+/* Mission Section - Laptop/Desktop */
+.about-mission {
+    padding: 100px 10%;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Mobile & Tablet Styles */
+@media (max-width: 900px) {
+    .about-hero h1 { font-size: 2.5rem; }
+    
+    .about-stats {
+        grid-template-columns: 1fr;
+        margin-top: 20px;
+        padding: 20px 5%;
+    }
+
+    .about-mission {
+        grid-template-columns: 1fr;
+        padding: 60px 5%;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .mission-features {
+        align-items: center;
+    }
+
+    .feat { width: 100%; justify-content: center; }
+
+    /* Hamburger Menu Logic */
+    .nav-links-center {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: #1e293b;
+        flex-direction: column;
+        padding: 40px;
+        transition: 0.3s;
+    }
+
+    .nav-links-center.open {
+        left: 0;
+    }
+}

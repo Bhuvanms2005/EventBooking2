@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+}
+
+/* NAVIGATION */
+.user-nav {
+    background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 100%);
+    height: 75px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 2000;
+    padding: 0 5%;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-logo-area { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo { color: #fff; font-size: 1.4rem; font-weight: 800; }
+
+.nav-links-center {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links-center a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links-center a.active { color: #ffbd2e; }
+
+.nav-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.login-pill {
+    background: #ffffff;
+    color: #1e3a8a;
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* BREADCRUMB & LAYOUT */
+.breadcrumb-area { padding: 110px 10% 20px; font-size: 0.9rem; color: #94a3b8; }
+.breadcrumb-area a { color: #6366f1; text-decoration: none; }
+
+.details-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 40px;
+    padding: 0 10% 60px;
+}
+
+.hero-card { background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.event-banner { width: 100%; height: 450px; object-fit: cover; }
+.hero-info { padding: 40px; }
+.hero-info h1 { font-size: 2.8rem; font-weight: 900; margin: 15px 0; }
+
+.meta-grid { display: flex; gap: 25px; flex-wrap: wrap; }
+.meta-item { display: flex; align-items: center; gap: 8px; color: #64748b; font-weight: 600; }
+
+.description-section { background: white; border-radius: 30px; padding: 40px; margin-top: 30px; }
+
+.booking-card {
+    background: white;
+    border-radius: 30px;
+    padding: 35px;
+    position: sticky;
+    top: 100px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.summary-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f1f5f9; }
+.price-txt { color: #10b981; font-size: 1.5rem; font-weight: 900; }
+
+.book-now-main-btn {
+    width: 100%;
+    padding: 18px;
+    margin-top: 25px;
+    border-radius: 18px;
+    background: #ffbd2e;
+    border: none;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.related-section { padding: 60px 10%; background: #fff; }
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 30px; }
+.low-stock {
+    color: #ef4444; /* Red color to show urgency */
+    font-weight: 800;
+}
+
+.summary-item strong {
+    font-size: 1rem;
+    color: #1e293b;
+}
+/* MOBILE RESPONSIVENESS & HAMBURGER FIX */
+@media (max-width: 1100px) {
+    .details-layout { grid-template-columns: 1fr; }
+    .booking-card { position: static; margin-top: 30px; }
+}
+
+@media (max-width: 850px) {
+    .mobile-menu-toggle { display: block; }
+
+    .nav-links-center {
+        position: fixed;
+        top: 75px;
+        left: -100%;
+        width: 100%;
+        height: 100vh; /* Increased length to fill entire screen */
+        background: #0f172a;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 60px;
+        transition: 0.4s ease-in-out;
+        z-index: 1500;
+    }
+
+    .nav-links-center.open {
+        left: 0;
+    }
+
+    .nav-links-center a {
+        font-size: 1.8rem; /* Larger text for mobile accessibility */
+        margin-bottom: 35px;
+        color: white;
+    }
+
+    .hero-info h1 { font-size: 2rem; }
+    .event-banner { height: 300px; }
+    .related-grid { grid-template-columns: 1fr; }
+}
